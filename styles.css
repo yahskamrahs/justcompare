@@ -1,0 +1,67 @@
+/* styles.css */
+
+.login-container,
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2,
+.register-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-container label,
+.register-container label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-container input,
+.register-container input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button,
+.register-container button {
+    width: calc(100% - 20px);
+    padding: 12px;
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover,
+.register-container button:hover {
+    background-color: #f7a816;
+}
+
+.login-container p,
+.register-container p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-container a,
+.register-container a {
+    color: #f7a816;
+    text-decoration: none;
+}
+
+.login-container a:hover,
+.register-container a:hover {
+    color: #ffcc00;
+}

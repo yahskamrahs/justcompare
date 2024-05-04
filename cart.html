@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        a {
+  color: #f7a816;
+  text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #fcbd49;
+  outline: none;
+  text-decoration: none;
+}
+
+        header {
+            margin-top: 13px;
+            padding: 15px;
+            color: white;
+            text-align: left;
+            position: absolute; /* Change to absolute positioning */
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0;
+            display: inline;
+            margin-left: 50px;
+        }
+
+        header span {
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        header nav {
+            margin-right: 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        header a {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        header a:hover{
+            color: #ffcc00;
+            font-size: 17px;
+            
+        }
+
+        .search-section {
+            padding-top: 100px;
+            background-image: url('Assets/bgimage.jpg');
+            background-size:cover;
+            background-position:top;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 0;
+        }
+
+        .search-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            margin: 0 auto 20px;
+            width: 80%;
+            border:#000;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #f9f7f7;
+        }
+
+        .search-button {
+            width: 150px;
+            margin: 10px auto 0;
+            padding: 14px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-size: 19px;
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            width: 150px;
+            margin: 10px auto 0;
+            padding: 14px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-size: 20px;
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-results {
+            min-height: 350px;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-container {
+            min-height: 420px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product-box {
+            width: 200px;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-box img {
+            width: 100%;
+            min-height: 50%;
+            max-height: 150px;
+        }
+
+        .product-box h3,
+        .product-box p,
+        .product-box a {
+            color: #333;
+        }
+
+        .product-box .view-product {
+            margin-top: 10px;
+        }
+
+        .product-box .view-product a {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .product-box .view-product a:hover {
+            display: block;
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        .product-box .view-product img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .product-box .add-to-cart-button {
+            padding: 8px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-box .add-to-cart-button:hover {
+            padding: 9px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .cart-table th, .cart-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .cart-table th {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px;
+            height: 50px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #footer {
+  background: #06011b;
+  padding: 30px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+#footer .copyright {
+  text-align: center;
+}
+
+#footer .credits {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+}
+.emoji-image {
+    width: 13px; /* Adjust this value to your preferred width */
+    height: 13px; /* Maintain the aspect ratio */
+    vertical-align: middle;
+  }
+    </style>
+    <title>Search Products</title>
+</head>
+<body>
+
+    <header>
+        <h1><span>JUST &gt;</span> COMPARE</h1>
+        <nav>
+            <a href="index.html">HOME</a>
+            
+            <a href="index.html#About">ABOUT US</a>
+            
+            <a href="javascript:void(0);" onclick="openCart()">YOUR CART</a>
+        </nav>
+    </header>
+
+    <section class="search-section">
+        <h2>Search Products</h2>
+        <input type="text" class="search-bar" id="searchBar" placeholder="Enter keyword...">
+        <button class="search-button" onclick="performSearch()">Search</button>
+        <p id="searchPlaceholder"></p>
+    </section>
+
+    <section class="search-results" id="searchResults">
+        
+        <p id="searchPlaceholder">Your searches will appear here</p>
+        <!-- Search results will be displayed here -->
+    </section>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h1>Your Cart</h1>
+            <div id="cartContainer" class="cart-container">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Link</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody">
+                        <!-- Cart items will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="credits">
+            Developed by <a href="https://yahskamrahs.github.io/personal/">Akshay</a> With Peace <img src="white_bird.png" class="emoji-image">
+          </div>
+          <div class="copyright">
+            &copy; Copyright <strong>2024</strong>
+          </div>
+    </footer>
+
+    <script>
+        // Sample products for demonstration
+       /* var products = [
+            { title: 'Shirt 1', image: 'primage.jpg',icon:'site-icon.png', price: '$19.99', link: 'https://example.com/shirt1' },
+            { title: 'Shirt 1', image: 'primage.jpg',icon:'site-icon.png', price: '$19.99', link: 'https://example.com/shirt1' },
+            { title: 'Shirt 2', image: 'shirt2.jpg',icon:'sit-icon.png', price: '$24.99', link: 'https://example.com/shirt2' },
+            // Add more products as needed
+        ];
+*/
+var products = [
+            { title: 'Apple iPhone 15 Pro (128 GB) - Natural Titanium', image: 'Assets/iphone.jpg',icon:'amazon.png', price: '₹1,27,990', link: 'https://amzn.eu/d/4ETJ62S ' },
+            { title: 'Apple iPhone 15 Pro (128 GB) - Natural Titanium', image: 'Assets/iphone.jpg',icon:'flipkart.png', price: '₹1,27,990', link: ' https://dl.flipkart.com/s/NZHtOouuuN ' },
+            { title: 'Apple iPhone 15 Pro (128 GB) - Natural Titanium', image: 'Assets/iphone.jpg',icon:'nue.png', price: '₹1,27,990', link: ' https://www.croma.com/apple-iphone-15-pro-128gb-blue-titanium-/p/300785' },
+            // 
+            { title: 'Campus Shoes Mens North Plus Running ', image: 'Assets/campus.jpg',icon:'amazon.png', price: ' ₹1,196', link: 'https://amzn.eu/d/d0HYQfN' },
+            { title: 'Campus Shoes Mens North Plus Running ', image: 'Assets/campus2.jpg',icon:'flipkart.png', price: '₹1,375', link: ' https://dl.flipkart.com/dl/campus-north-plus-running-shoes-men/p/itm9669687c56df2?pid=SHOFY4DPSP3EMZ4R&cmpid=product.share.pp&_refId=PP.242b6834-e968-44f4-9b42-4da3cf4cbc43.SHOFY4DPSP3EMZ4R&_appId=WA ' },
+            { title: 'Campus Shoes Mens North Plus Running ', image: 'Assets/campus.jpg',icon:'nue.png', price: '₹1,104', link: ' https://www.tatacliq.com/campus-mens-mike-n-navy-running-shoes/p-mp000000011087107 ' },
+            // 
+            { title: 'HP Victus Laptop', image: 'Assets/victus.jpg',icon:'amazon.png', price: ' ₹66,990', link: ' https://amzn.eu/d/97zJ8Dp ' },
+            { title: 'HP Victus Laptop', image: 'Assets/victus.jpg',icon:'flipkart.png', price: '₹55,500', link: 'https://dl.flipkart.com/dl/hp-victus-gaming-amd-ryzen-5-hexa-core-5600h-16-gb-512-gb-ssd-windows-11-home-4-graphics-nvidia-geforce-gtx-1650-15-fb0132ax-laptop/p/itmfa14c2dc6c48e?pid=COMGZUGT4H9ECY2X&cmpid=product.share.pp&_refId=PP.a360908c-5da4-4e3b-af89-a6423e136362.COMGZUGT4H9ECY2X&_appId=WA ' },
+            { title: 'HP Victus Laptop', image: 'Assets/victus.jpg',icon:'nue.png', price: '₹58,999', link: ' https://www.croma.com/hp-victus-intel-core-i5-12th-gen-15-6-inch-8gb-512gb-windows-11-home-ms-office-2021-nvidia-geforce-rtx-2050-full-hd-display-performance-blue-fa1098tx-/p/301167 ' },
+            // 
+            { title: 'JBL Speaker GO 2', image: 'Assets/jbl.jpg',icon:'amazon.png', price: ' ₹2,299', link: 'https://amzn.eu/d/dhnBqqS ' },
+            { title: 'JBL Speaker GO 2', image: 'Assets/jbl2.jpg',icon:'flipkart.png', price: '₹2,199', link: 'https://www.flipkart.com/jbl-go2-portable-bluetooth-speaker/p/itmf7zxcscyhqptp' },
+            { title: 'JBL Speaker GO 2', image: 'Assets/jbl3.jpg',icon:'nue.png', price: '₹2,099', link: 'https://www.croma.com/jbl-go-essential-3-1w-portable-bluetooth-speaker-ipx7-water-proof-rich-bass-mono-channel-black-/p/270359 ' },
+            // 
+            { title: 'Asus Graphics Card Dual RX 6600', image: 'Assets/graphicscard.jpg',icon:'amazon.png', price: '₹22,999', link: 'https://amzn.eu/d/0nipxbZ ' },
+            { title: 'Asus Graphics Card Dual RX 6600', image: 'Assets/graphicscard1.jpg',icon:'flipkart.png', price: '₹22,989', link: 'https://dl.flipkart.com/s/NoEhTluuuN ' },
+            { title: 'Asus Graphics Card Dual RX 6600', image: 'Assets/graphicscard.jpg',icon:'nue.png', price: 'Not Available', link: 'https://example.com/shirt2' },
+            // 
+            { title: 'Titan Watch Dial Analog Watch 1806NM01', image: 'Assets/titanwatch.jpg',icon:'amazon.png', price: '₹3,995', link: ' https://amzn.eu/d/bezaAYK ' },
+            { title: 'Titan Watch Dial Analog Watch 1806NM01', image: 'Assets/titanwatch.jpg',icon:'flipkart.png', price: '₹2,882', link: ' https://dl.flipkart.com/dl/titan-purple-iridiscent-dials-analog-watch-men/p/itmb69ff00fec9b6?pid=WATGG934WXD5BJXF&cmpid=product.share.pp&_refId=PP.c07528f6-2535-478b-a4f6-fd5f73a989e5.WATGG934WXD5BJXF&_appId=WA ' },
+            { title: 'Titan Watch Dial Analog Watch 1806NM01', image: 'Assets/titanwatch.jpg',icon:'nue.png', price: '₹ 3,995', link: 'https://www.titan.co.in/product/titan-quartz-analog-with-date-watch-for-men-black-dial-with-metal-strap-1806nm01.html?lang=en_IN ' },
+            // 
+            { title: 'Digital SLR Camera', image: 'Assets/dslr.jpg',icon:'amazon.png', price: '₹35,890', link: ' https://amzn.eu/d/41b4Y6J ' },
+            { title: 'Digital SLR Camera', image: 'Assets/dslr.jpg',icon:'flipkart.png', price: '₹30,990', link: 'https://dl.flipkart.com/dl/canon-eos-3000d-dslr-camera-1-body-18-55-mm-lens/p/itm6f665fea97bc2?pid=CAMF3DHJURPEMNRN&cmpid=product.share.pp&_refId=PP.4699bcac-33ba-410b-bf2d-6d24733e11cd.CAMF3DHJURPEMNRN&_appId=WA ' },
+            { title: 'Digital SLR Camera', image: 'Assets/dslr.jpg',icon:'nue.png', price: '₹59,490', link: ' https://www.croma.com/canon-eos-200d-ii-24-1-mp-dslr-camera-18-55-mm-lens-22-3-x-14-9-mm-optical-image-stabilization-/p/267968 ' },
+            // 
+            { title: 'JBL Headphone Tune 770NC', image: 'Assets/jblheadphone.jpg',icon:'amazon.png', price: '₹6,499', link: 'https://amzn.eu/d/1v4X0Yh ' },
+            { title: 'JBL Headphone Tune 770NC', image: 'Assets/jblhead.jpg',icon:'flipkart.png', price: '₹6,499', link: 'https://dl.flipkart.com/s/NG6tdSuuuN' },
+            { title: 'JBL Headphone Tune 770NC', image: 'Assets/jblhead1.jpg',icon:'nue.png', price: '₹6,499', link: ' https://www.croma.com/JBL-Tune-770NC-Bluetooth-Headphone-with-Adaptive-Noise-Cancellation-Pure-Bass-Sound-Over-Ear-Black-/p/273406?utm_source=tcp&utm_medium=superapp&jarvisId=e54d8e22-1c7c-4847-854f-d77d31e289fd&anonymousId=2c76eb53-794e-4451-8d54-40c11179af62&sessionId=9595ed4f-13bd-4262-9525-24cf694450f5&lat=18.94206&long=72.83544 ' },
+            // 
+            { title: 'LG Smart TV Ultra HD LED', image: 'Assets/lgtv.jpg',icon:'amazon.png', price: '₹29,990', link: ' https://amzn.eu/d/0lfYqe5 ' },
+            { title: 'LG Smart TV Ultra HD LED', image: 'Assets/lgtv.jpg',icon:'flipkart.png', price: '₹29,990', link: 'https://dl.flipkart.com/dl/lg-ur7500-108-cm-43-inch-ultra-hd-4k-led-smart-webos-tv-2023-a5-ai-processor-4k-gen6-60hz-refresh-rate-magic-remote-capability/p/itm926f6b65c136b?pid=TVSGQQDYSCFGRX2F&cmpid=product.share.pp&_refId=PP.2853c90c-ce07-43af-a3ed-5965d615c516.TVSGQQDYSCFGRX2F&_appId=WA ' },
+            { title: 'LG Smart TV Ultra HD LED', image: 'Assets/lgtv1.jpg',icon:'nue.png', price: '₹30,990', link: ' https://www.croma.com/LG-UQ7500-108-cm-43-inch-4K-Ultra-HD-LED-WebOS-TV-with-Gen5-AI-Processor-4K/p/274582?utm_source=tcp&utm_medium=superapp&jarvisId=e54d8e22-1c7c-4847-854f-d77d31e289fd&anonymousId=2c76eb53-794e-4451-8d54-40c11179af62&sessionId=95c07969-f345-4000-8f46-6f05653ae5c9&lat=18.94206&long=72.83544 ' },
+            // 
+            { title: 'LG fridge smart Double Door Refrigerator', image: 'Assets/lgfridge.jpg',icon:'amazon.png', price: '₹25,990', link: ' https://amzn.eu/d/c00p226 ' },
+            { title: 'LG fridge smart Double Door Refrigerator', image: 'Assets/lgfridge.jpg',icon:'flipkart.png', price: '₹26,990', link: ' https://dl.flipkart.com/s/uXb3bRNNNN ' },
+            { title: 'LG fridge smart Double Door Refrigerator', image: 'Assets/lgfridge.jpg',icon:'nue.png', price: '₹44,990', link: 'https://www.croma.com/lg-412-litres-1-star-frost-free-double-door-convertible-refrigerator-with-smart-inverter-compressor-gl-t432apzr-dpzzeb-shiny-steel-/p/269921 ' },
+            // 
+        ];
+
+        function performSearch() {
+    var keyword = document.getElementById('searchBar').value.toLowerCase();
+    var searchResultsContainer = document.getElementById('searchResults');
+    var searchPlaceholder = document.getElementById('searchPlaceholder');
+    searchResultsContainer.innerHTML = '';
+
+    // Check if the search bar input is empty
+    if (keyword.trim() === '') {
+        searchPlaceholder.style.display = 'block';
+        searchPlaceholder.textContent = 'No results found.';
+        return; // Exit the function if the search bar is empty
+    }
+
+    var filteredProducts = products.filter(function(product) {
+        return product.title.toLowerCase().includes(keyword);
+    });
+
+    if (filteredProducts.length > 0) {
+        searchPlaceholder.style.display = 'none';
+
+        var productContainer = document.createElement('div');
+        productContainer.className = 'product-container';
+
+        filteredProducts.forEach(function(product) {
+            var productBox = document.createElement('div');
+            productBox.className = 'product-box';
+
+            var productImage = document.createElement('img');
+            productImage.src = product.image;
+            productImage.alt = product.title;
+
+            var titleElement = document.createElement('h3');
+            titleElement.textContent = product.title;
+
+            var priceElement = document.createElement('p');
+            priceElement.textContent = 'Price: ' + product.price;
+
+            var linkElement = document.createElement('a');
+            linkElement.href = product.link;
+            linkElement.textContent = 'View Product';
+
+            var siteIcon = document.createElement('img');
+            siteIcon.src = product.icon; // Replace with the path to your icon image
+            siteIcon.alt = 'Site Icon';
+
+            var addToCartButton = document.createElement('button');
+            addToCartButton.className = 'add-to-cart-button';
+            addToCartButton.textContent = 'Add to Cart';
+            addToCartButton.onclick = function() {
+                addToCart(product.title, product.image, product.price, product.link);
+            };
+
+            var viewProductContainer = document.createElement('div');
+            viewProductContainer.className = 'view-product';
+            viewProductContainer.appendChild(siteIcon);
+            viewProductContainer.appendChild(linkElement);
+            viewProductContainer.appendChild(priceElement); // Price moved below the View Product link
+            viewProductContainer.appendChild(addToCartButton); // Add to Cart button below the Price
+
+            productBox.appendChild(productImage);
+            productBox.appendChild(titleElement);
+            productBox.appendChild(viewProductContainer);
+
+            productContainer.appendChild(productBox);
+        });
+
+        searchResultsContainer.appendChild(productContainer);
+    } else {
+        searchPlaceholder.style.display = 'block';
+        searchPlaceholder.textContent = 'No results found.';
+    }
+}
+
+
+        // Sample addToCart function
+        function addToCart(productTitle,productImage, productPrice, productLink) {
+    var cartContainer = document.getElementById('cartTableBody');
+    var confirmationMessage = "Your product is successfully added to the cart!";
+    alert(confirmationMessage);
+
+    var cartRow = document.createElement('tr');
+    var cartImageCell = document.createElement('td');
+    var cartProductCell = document.createElement('td');
+    var cartPriceCell = document.createElement('td');
+    var cartLinkCell = document.createElement('td');
+    var cartActionCell = document.createElement('td');
+
+    var productImageElement = document.createElement('img');
+    productImageElement.src = productImage;
+    productImageElement.alt = productTitle;
+    productImageElement.style.width = '50px'; // Adjust the width as needed
+    productImageElement.style.height = 'auto';
+
+    var productTitleElement = document.createElement('p');
+    productTitleElement.textContent = productTitle;
+
+    var productPriceElement = document.createElement('p');
+    productPriceElement.textContent = productPrice;
+
+    var productLinkElement = document.createElement('a');
+    productLinkElement.href = productLink;
+    productLinkElement.textContent = 'View Product';
+
+    var removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove Product';
+    removeButton.onclick = function() {
+        cartContainer.removeChild(cartRow);
+        updateLocalStorage();
+    };
+
+    cartImageCell.appendChild(productImageElement);
+    cartProductCell.appendChild(productTitleElement);
+    cartPriceCell.appendChild(productPriceElement);
+    cartLinkCell.appendChild(productLinkElement);
+    cartActionCell.appendChild(removeButton);
+
+    cartRow.appendChild(cartImageCell);
+    cartRow.appendChild(cartProductCell);
+    cartRow.appendChild(cartPriceCell);
+    cartRow.appendChild(cartLinkCell);
+    cartRow.appendChild(cartActionCell);
+
+    cartContainer.appendChild(cartRow);
+    updateLocalStorage();
+}
+
+
+
+
+        // Sample openCart function
+
+function openCart() {
+    var cartModal = document.getElementById('cartModal');
+    cartModal.style.display = 'block';
+    loadCartFromLocalStorage();
+}
+
+function closeCartModal() {
+    var cartModal = document.getElementById('cartModal');
+    cartModal.style.display = 'none';
+}
+
+function updateLocalStorage() {
+    var cartItems = [];
+    var cartRows = document.querySelectorAll('.cart-table tbody tr');
+
+    cartRows.forEach(function(row) {
+        var item = {
+            title: row.querySelector('td:nth-child(2) p').textContent,
+            price: row.querySelector('td:nth-child(3) p').textContent,
+            link: row.querySelector('td:nth-child(4) a').href,
+            image: row.querySelector('td:first-child img').src
+        };
+        cartItems.push(item);
+    });
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+function loadCartFromLocalStorage() {
+    var cartContainer = document.getElementById('cartTableBody');
+    var storedItems = localStorage.getItem('cartItems');
+    var cartItems = storedItems ? JSON.parse(storedItems) : [];
+
+    cartContainer.innerHTML = '';
+
+    cartItems.forEach(function(item) {
+        var cartRow = document.createElement('tr');
+        var cartImageCell = document.createElement('td');
+        var cartProductCell = document.createElement('td');
+        var cartPriceCell = document.createElement('td');
+        var cartLinkCell = document.createElement('td');
+        var cartActionCell = document.createElement('td');
+
+        var productImageElement = document.createElement('img');
+        productImageElement.src = item.image;
+        productImageElement.alt = item.title;
+        productImageElement.style.width = '50px'; // Adjust the width as needed
+        productImageElement.style.height = 'auto';
+
+        var productTitleElement = document.createElement('p');
+        productTitleElement.textContent = item.title;
+
+        var productPriceElement = document.createElement('p');
+        productPriceElement.textContent = item.price;
+
+        var productLinkElement = document.createElement('a');
+        productLinkElement.href = item.link;
+        productLinkElement.textContent = 'View Product';
+
+        var removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove Product';
+        removeButton.onclick = function() {
+            cartContainer.removeChild(cartRow);
+            updateLocalStorage();
+        };
+
+        cartImageCell.appendChild(productImageElement);
+        cartProductCell.appendChild(productTitleElement);
+        cartPriceCell.appendChild(productPriceElement);
+        cartLinkCell.appendChild(productLinkElement);
+        cartActionCell.appendChild(removeButton);
+
+        cartRow.appendChild(cartImageCell);
+        cartRow.appendChild(cartProductCell);
+        cartRow.appendChild(cartPriceCell);
+        cartRow.appendChild(cartLinkCell);
+        cartRow.appendChild(cartActionCell);
+
+        cartContainer.appendChild(cartRow);
+    });
+}
+
+    </script>
+
+</body>
+</html>

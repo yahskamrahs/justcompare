@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        a {
+  color: #f7a816;
+  text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #fcbd49;
+  outline: none;
+  text-decoration: none;
+}
+        header {
+            margin-top: 13px;
+            padding: 15px;
+            color: white;
+            text-align: left;
+            position: absolute; /* Change to absolute positioning */
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        p{
+            margin-top: -10px;
+            font-size: 26px;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        header h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0;
+            display: inline;
+            margin-left: 50px;
+        }
+        h1{
+            font-size: 35px;
+        }
+        h2{
+            margin-top: -10px;
+            font-size: 60px;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        header span {
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        header nav {
+            margin-right: 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        header a:hover{
+            color: #ffcc00;
+            font-size: 17px;
+            
+        }
+
+        .main-section {
+            padding-top: -10px; /* Adjusted padding to account for the header height */
+            height: 610px;
+            background-image: url('Assets/bgimage.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 0;
+        }
+
+        .main-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .main-section a{
+            width: 150px;
+            margin: 10px auto 0;
+            padding: 14px;
+            font-size: 19px;
+            background-color: #ffcc00;
+            color: #000;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .main-section a:hover{
+            background-color: #f7a816;
+            padding: 15px;
+            font-size: 19px;
+
+        }
+
+        .products-section {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-container {
+            min-height: 410px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product-box {
+            width: 200px;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-box img {
+            width: 100%;
+            height: 50%;
+            max-height: 150px;
+        }
+
+        .product-box h3,
+        .product-box p,
+        .product-box a {
+            color: #333;
+        }
+
+        .product-box .view-product a {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .product-box .view-product a:hover {
+            color: #24e91d;
+            
+        }
+
+        .product-box .view-product img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .product-box button {
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product-box button:hover {
+            padding: 13px;
+            background-color: #57c75b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        /* About Us */
+
+        .about-us-section {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .developer-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 23px;
+            padding: 30px;
+        }
+
+        .developer-box {
+            width: 200px;
+            margin: 0 20px;
+            text-align: center;
+        }
+        .developer-box p{
+            font-size: 16px;
+        }
+        .developer-box h3{
+            margin-top: -3px;
+            font-size: 23px;
+            font-weight: 1000;
+            font-family:monospace;
+            
+        }
+
+        .developer-box img {
+            width: 60%;
+            height: 60%;
+            height: auto;
+            border-color: #06011b;
+            border-style: double;
+            border-width: 5px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+
+/* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px;
+            height: 50px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .cart-table th, .cart-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .cart-table th {
+            background-color: #f2f2f2;
+        }
+        #footer {
+  background: #06011b;
+  padding: 30px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+#footer .copyright {
+  text-align: center;
+}
+
+#footer .credits {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+}
+.emoji-image {
+    width: 13px; /* Adjust this value to your preferred width */
+    height: 13px; /* Maintain the aspect ratio */
+    vertical-align: middle;
+  }
+    </style>
+    <title>Your Website</title>
+</head>
+<body>
+
+    <header>
+        <h1> <span>JUST &gt; </span>COMPARE</h1>
+        
+        <nav>
+        
+            <a href="cart.html">SEARCH</a>
+            <a href="#About">ABOUT US</a>
+            
+            <a href="javascript:void(0);" onclick="openCart()">CART</a>
+            <a href="login.html">ACCOUNT</a> 
+        </nav>
+    </header>
+
+    <section class="main-section" id="home">
+        <h2>JUST COMPARE</h2>
+        <p>Compare to save Money</p>
+        <a href="cart.html" >Compare Now</a>
+    </section>
+
+    <section class="products-section">
+        <h1>TRENDING PRODUCTS</h1>
+        <div class="product-container">
+            <div class="product-box">
+                <img src="Assets/iphone.jpg" alt="Product 1">
+                <h3>Apple iPhone 15 Pro (128 GB) - Natural Titanium</h3>
+                <p>Price:₹1,27,990</p>
+                <div class="view-product">
+                    <img src="amazon.png" alt="iamge">
+                    <a href="https://amzn.eu/d/4ETJ62S">View Product</a>
+                </div>
+                
+                <button onclick="addToCart('Apple iPhone 15 Pro (128 GB) - Natural Titanium', '₹1,27,990', 'https://amzn.eu/d/4ETJ62S', 'Assets/iphone.jpg')">Add to Cart</button>
+            </div>
+            <div class="product-container">
+                <div class="product-box">
+                    <img src="Assets/victus.jpg" alt="Product 1">
+                    <h3>HP Victus Laptop</h3>
+                    <p>Price: ₹66,990</p>
+                    <div class="view-product">
+                        <img src="amazon.png" alt="image">
+                        <a href=" https://amzn.eu/d/97zJ8Dp">View Product</a>
+                    </div>
+                    
+                    <button onclick="addToCart('HP Victus Laptop', '₹66,990', 'https://amzn.eu/d/97zJ8Dp', 'Assets/victus.jpg')">Add to Cart</button>
+                </div>
+                <div class="product-container">
+                    <div class="product-box">
+                        <img src="Assets/titanwatch.jpg" alt="Product 1">
+                        <h3>Titan Dial Analog Watch 1806NM01</h3>
+                        <p>Price: ₹3,995</p>
+                        <div class="view-product">
+                            <img src="amazon.png" alt="iamge">
+                            <a href="https://amzn.eu/d/bezaAYK ">View Product</a>
+                        </div>
+                        
+                        <button onclick="addToCart('Titan Dial Analog Watch 1806NM01', '₹3,995', 'https://amzn.eu/d/bezaAYK ', 'Assets/titanwatch.jpg')">Add to Cart</button>
+                    </div>
+                    <div class="product-container">
+                        <div class="product-box">
+                            <img src="Assets/dslr.jpg" alt="Product 1">
+                            <h3>Digital SLR Camera</h3>
+                            <p>Price: ₹35,890</p>
+                            <div class="view-product">
+                                <img src="amazon.png" alt="iamge">
+                                <a href="https://amzn.eu/d/41b4Y6J ">View Product</a>
+                            </div>
+                            
+                            <button onclick="addToCart('Digital SLR Camera', '₹35,890', 'https://amzn.eu/d/41b4Y6J ', 'Assets/dslr.jpg')">Add to Cart</button>
+                        </div>
+    </section>
+
+    <section class="about-us-section" id="About">
+        <h1>ABOUT US</h1>
+        <div class="developer-container">
+            <div class="developer-box">
+                <!--<img src="Assets/profile-akshay.jpg" alt="Developer 1">-->
+                <h3>AKSHAYKUMAR SHARMA</h3>
+                <p>Roll No:06<br>BSC IT 2nd Year<br>Team Leader</p>
+            </div>
+            <div class="developer-box">
+                <!--<img src="site-icon.png" alt="Developer 2">-->
+                <h3>AKSHAY MISAL</h3>
+                <p>Roll No:05<br>BSC IT 2nd Year<br>Team Member</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- <section class="products-section" id="About">
+        <h1>About Us</h1>
+        <div class="product-container">
+            <div class="product-box">
+                <img src="bgimage.jpg" alt="Product 1">
+                <h3>Product Title 1</h3>
+                <p>Price: $19.99</p>
+                <a href="https://websitedemos.net/earth-store-02/">View Product</a>
+                <button onclick="addToCart('Product Title 1', '$19.99', 'https://websitedemos.net/earth-store-02/', 'bgimage.jpg')">Add to Cart</button>
+            </div>
+            <div class="product-box">
+                <img src="bgimage.jpg" alt="Product 2">
+                <h3>Product Title 2</h3>
+                <p>Price: $29.99</p>
+                <a href="#">View Product</a>
+                <button onclick="addToCart('Product Title 2', '$29.99', '', 'bgimage.jpg')">Add to Cart</button>
+            </div>
+             Add more product boxes as needed 
+        </div>
+    </section> -->
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h1>Your Cart</h1>
+            <div id="cartContainer" class="cart-container">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Link</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody">
+                        <!-- Cart items will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="credits">
+            Developed by <a href="https://yahskamrahs.github.io/personal/">Akshay</a> With Peace <img src="white_bird.png" class="emoji-image">
+          </div>
+          <div class="copyright">
+            &copy; Copyright <strong>2024</strong>
+          </div>
+    </footer>
+
+    <script>
+    
+        function addToCart(productTitle, productPrice, productLink, productImage) {
+    var cartContainer = document.getElementById('cartTableBody');
+    var confirmationMessage = "Your product is successfully added to the cart!";
+    alert(confirmationMessage);
+
+    var cartRow = document.createElement('tr');
+    var cartImageCell = document.createElement('td');
+    var cartProductCell = document.createElement('td');
+    var cartPriceCell = document.createElement('td');
+    var cartLinkCell = document.createElement('td');
+    var cartActionCell = document.createElement('td');
+
+    var productImageElement = document.createElement('img');
+    productImageElement.src = productImage;
+    productImageElement.alt = productTitle;
+    productImageElement.style.width = '50px'; // Adjust the width as needed
+    productImageElement.style.height = 'auto';
+
+    var productTitleElement = document.createElement('p');
+    productTitleElement.textContent = productTitle;
+
+    var productPriceElement = document.createElement('p');
+    productPriceElement.textContent = productPrice;
+
+    var productLinkElement = document.createElement('a');
+    productLinkElement.href = productLink;
+    productLinkElement.textContent = 'View Product';
+
+    var removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove Product';
+    removeButton.onclick = function() {
+        cartContainer.removeChild(cartRow);
+        updateLocalStorage();
+    };
+
+    cartImageCell.appendChild(productImageElement);
+    cartProductCell.appendChild(productTitleElement);
+    cartPriceCell.appendChild(productPriceElement);
+    cartLinkCell.appendChild(productLinkElement);
+    cartActionCell.appendChild(removeButton);
+
+    cartRow.appendChild(cartImageCell);
+    cartRow.appendChild(cartProductCell);
+    cartRow.appendChild(cartPriceCell);
+    cartRow.appendChild(cartLinkCell);
+    cartRow.appendChild(cartActionCell);
+
+    cartContainer.appendChild(cartRow);
+    updateLocalStorage();
+}
+
+function openCart() {
+    var cartModal = document.getElementById('cartModal');
+    cartModal.style.display = 'block';
+    loadCartFromLocalStorage();
+}
+
+function closeCartModal() {
+    var cartModal = document.getElementById('cartModal');
+    cartModal.style.display = 'none';
+}
+
+function updateLocalStorage() {
+    var cartItems = [];
+    var cartRows = document.querySelectorAll('.cart-table tbody tr');
+
+    cartRows.forEach(function(row) {
+        var item = {
+            title: row.querySelector('td:nth-child(2) p').textContent,
+            price: row.querySelector('td:nth-child(3) p').textContent,
+            link: row.querySelector('td:nth-child(4) a').href,
+            image: row.querySelector('td:first-child img').src
+        };
+        cartItems.push(item);
+    });
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+function loadCartFromLocalStorage() {
+    var cartContainer = document.getElementById('cartTableBody');
+    var storedItems = localStorage.getItem('cartItems');
+    var cartItems = storedItems ? JSON.parse(storedItems) : [];
+
+    cartContainer.innerHTML = '';
+
+    cartItems.forEach(function(item) {
+        var cartRow = document.createElement('tr');
+        var cartImageCell = document.createElement('td');
+        var cartProductCell = document.createElement('td');
+        var cartPriceCell = document.createElement('td');
+        var cartLinkCell = document.createElement('td');
+        var cartActionCell = document.createElement('td');
+
+        var productImageElement = document.createElement('img');
+        productImageElement.src = item.image;
+        productImageElement.alt = item.title;
+        productImageElement.style.width = '50px'; // Adjust the width as needed
+        productImageElement.style.height = 'auto';
+
+        var productTitleElement = document.createElement('p');
+        productTitleElement.textContent = item.title;
+
+        var productPriceElement = document.createElement('p');
+        productPriceElement.textContent = item.price;
+
+        var productLinkElement = document.createElement('a');
+        productLinkElement.href = item.link;
+        productLinkElement.textContent = 'View Product';
+
+        var removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove Product';
+        removeButton.onclick = function() {
+            cartContainer.removeChild(cartRow);
+            updateLocalStorage();
+        };
+
+        cartImageCell.appendChild(productImageElement);
+        cartProductCell.appendChild(productTitleElement);
+        cartPriceCell.appendChild(productPriceElement);
+        cartLinkCell.appendChild(productLinkElement);
+        cartActionCell.appendChild(removeButton);
+
+        cartRow.appendChild(cartImageCell);
+        cartRow.appendChild(cartProductCell);
+        cartRow.appendChild(cartPriceCell);
+        cartRow.appendChild(cartLinkCell);
+        cartRow.appendChild(cartActionCell);
+
+        cartContainer.appendChild(cartRow);
+    });
+}
+    </script>
+
+</body>
+</html>
